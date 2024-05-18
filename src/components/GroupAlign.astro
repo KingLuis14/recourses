@@ -2,7 +2,7 @@
 interface Props {
     name : string;
     title: string;
-    array: string[];
+    array: {property: string ; checked? : boolean}[];
 }
 
 const {array, title, name} = Astro.props;
@@ -11,11 +11,10 @@ const {array, title, name} = Astro.props;
     <fieldset slot="values">
         <legend>{title}</legend>
         {
-            array.map((item, index)=>{
+            array.map(({property, checked}) =>{
                 return <label>
-                            <input {name} type="radio" value={item} 
-                            checked={index === 0} />
-                            {item}
+                            <input {name} type="radio" value={property} checked={checked} />
+                            {property}
                         </label>
             })
         }
