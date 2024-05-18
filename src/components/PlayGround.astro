@@ -28,30 +28,43 @@
             
             display: none;
             position: absolute;
+            // -->
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%) rotate(-90deg);
-            top: 1rem;
-            bottom: 2rem;
-            border-left: 7px dashed orange;
+            width: 70vmin;
+            height: 0;
+            transform: translate(-50%, -50%) rotate(0deg);
+            transition: transform .4s;
+            border-bottom: 7px dashed orange;
+
+            // abajo
+
+            
+
 
             &[data-show="true"]{
                 display: block;
             }
 
             &.column{
-                transform: rotate(0deg);
+                
+                transform: translate(-50%, -50%) rotate(90deg) ;
+                // width: 0;
+                // height: 70%;
+                // border-bottom: none;
+                border-left: 7px dashed orange;
             }
 
             &::after{
                 content: "";
                 position: absolute;
                 background-color: orange;
-                bottom: 0;
+                right: 0;
                 width: 25px;
                 aspect-ratio: 1;
-                left: 0;
+                // transform: translate(50%, -25%);
                 clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-                transform: rotate(180deg) translate(62%,-75%);
+                transform: translate(60%, -30%) rotate(90deg) ;
 
             }
 

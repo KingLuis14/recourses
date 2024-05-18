@@ -12,7 +12,7 @@ const {array, title, name} = Astro.props;
         <legend>{title}</legend>
         {
             array.map(({property, checked}) =>{
-                return <label>
+                return <label translate="no" class="notranslate">
                             <input {name} type="radio" value={property} checked={checked} />
                             {property}
                         </label>
