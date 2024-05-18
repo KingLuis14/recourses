@@ -1,0 +1,79 @@
+---
+
+type direction = 'Order-Bottom-Left' | 'Order-Bottom-Rigth' | 'Order-Top-Left' | 'Order-Top-Rigth'
+
+interface Props {
+    titulo: string;
+    descripcion: string;
+    textoBoton: string;
+    ContentDirection?: direction;
+}
+
+const { titulo, descripcion, textoBoton, ContentDirection } = Astro.props;
+---
+
+<article class="SplitLayout " >
+    <div class={`SplitLayout__Contenido ${ContentDirection}`} >
+        <h2>{titulo}</h2>
+        <p>{descripcion}</p>
+        <slot name="plusContent" />
+        <a href="#">{textoBoton}</a>
+    </div>
+    <slot name="Imagen" />
+</article>
+
+<style lang="scss">
+
+    $breakpoint : 580px;
+
+    .SplitLayout {
+        width: min(100%, 800px);
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        border: 2px solid green;
+
+        @media (width > $breakpoint) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        &__Contenido {
+            display: grid;
+            gap: 1rem;
+            align-self: center;
+
+            > a{
+                display: inline-block;
+                text-decoration: none;
+                background-color: rgb(248, 43, 108);
+                color: white;
+                padding: .8rem 1.5rem;
+                width: fit-content;
+            }
+            
+        }
+    }
+
+    .Order-Bottom-Left {
+        order: 1;
+        @media (width > $breakpoint) {
+            order: 0;
+        }
+    }
+
+    .Order-Bottom-Rigth {
+        order: 1;
+    }
+
+    .Order-Top-Left {
+        order: 0;
+    }
+
+    .Order-Top-Rigth {
+        order: 0;
+        @media (width > $breakpoint) {
+            order: 1;
+        }
+    }
+</style>

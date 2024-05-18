@@ -1,0 +1,27 @@
+---
+interface Props {
+    titulo: string;
+    descripcion: string;
+    textoBoton: string;
+    columnas?: 1 | 2;
+}
+
+const { titulo, descripcion, textoBoton, columnas } = Astro.props;
+---
+
+<section class="hero">
+    <div class="hero__container wrapper-layout" data-columns={columnas}>
+        <article class="hero__contenido | text-flow color-neutral-000" data-columns={columnas}>
+            <h1 class="fs-superTitle">{titulo}</h1>
+            <p class="mx-auto">{descripcion}</p>
+            <a class="button" href="#">{textoBoton}</a>
+            <slot name="plusContent" />
+        </article>
+        <slot name="Columna2" />
+    </div>
+</section>
+
+<style lang="scss">
+    @use '../scss/components' as *;
+    @use '../scss/layouts' as *;
+</style>

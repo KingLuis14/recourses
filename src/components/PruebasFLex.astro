@@ -1,0 +1,116 @@
+---
+type direction = 'Order-Bottom-Left' | 'Order-Bottom-Rigth' | 'Order-Top-Left' | 'Order-Top-Rigth'
+
+interface Props {
+    titulo: string;
+    descripcion: string;
+    textoBoton: string;
+    ContentDirection?: direction;
+}
+
+const { ContentDirection = 'Order-Top-Left' } = Astro.props;
+---
+
+<article class={`SplitLayout`}>
+    <div class={`SplitLayout__Contenido ${ContentDirection}`}>
+        <h2>Titulo</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+            et animi dolorem cumque? Est neque distinctio, aliquam voluptatibus
+            cumque iusto laboriosam nobis impedit voluptas saepe ipsum numquam
+            culpa quam cupiditate.
+        </p>
+        <a href="#">ajajja</a>
+    </div>
+    <slot name="plusContent" />
+    <div class="SplitLayout__imagen">
+        <img
+            src="https://imagenes.elpais.com/resizer/ryg0VAzr1f9Tf6ZP1X_EN_WjMXM=/1960x1470/filters:focal(1133x620:1143x630)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/ZZIDTAAXOZEQXPZ2BP3VGO7KIY.jpg"
+            alt=""
+            style="aspect-ratio: 1;"
+        />
+    </div>
+</article>
+
+<style lang="scss">
+    .SplitLayout {
+        width: min(90%, 800px);
+        margin-inline: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        
+
+        > div {
+            // flex: 1 1 50%;
+            flex: 1 1 230px;
+            min-width: 200px;
+        }
+
+        &__Contenido{
+            background-color: crimson;
+        }
+
+        &__imagen {
+            > img {
+                // aspect-ratio: 1;
+            }
+        }
+
+        @media (width > 768px) {
+            // flex-wrap: nowrap;
+        }
+    }
+
+    .Order-Bottom-Left {
+        order: 1;
+        @media (width > 768px) {
+            order: 0;
+        }
+    }
+
+    .Order-Bottom-Rigth {
+        order: 1;
+    }
+
+    .Order-Top-Left {
+        order: 0;
+    }
+
+    .Order-Top-Rigth {
+        order: 0;
+        @media (width > 768px) {
+            order: 1;
+        }
+    }
+
+    // .Order-Bottom-Left {
+    //     flex-direction: column-reverse;
+    //     @media (width > 768px) {
+    //         flex-direction: row;
+    //     }
+    // }
+
+    // .Order-Bottom-Rigth {
+    //     flex-direction: column-reverse;
+    //     @media (width > 768px) {
+    //         flex-direction: row-reverse;
+    //     }
+    // }
+
+    // .Order-Top-Left {
+    //     flex-direction: column;
+    //     @media (width > 768px) {
+    //         flex-direction: row;
+    //     }
+    // }
+
+    // .Order-Top-Rigth {
+    //     flex-direction: column;
+    //     @media (width > 768px) {
+    //         flex-direction: row-reverse;
+    //     }
+    // }
+
+</style>

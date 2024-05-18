@@ -1,0 +1,121 @@
+---
+import PlayGround from "../components/PlayGround.astro";
+import FlexDirection from "../components/FlexDirection.astro";
+import MainLayout from "./MainLayout.astro";
+import data from "../data/justify-content";
+import data2 from "../data/align-content";
+import GroupAlign from "../components/GroupAlign.astro";
+
+interface Props {
+    title: string;
+    description: string;
+}
+---
+
+<MainLayout {...Astro.props}>
+    <section class="wrapper-layout" data-type="smx">
+        <h1 class="fs-superTitle text-center margin-block-end-32">
+            Flexbox Alineaciones
+        </h1>
+        <div class="section-main">
+            <GroupAlign name="values" title="Main Axis" array={data} />
+            <GroupAlign
+                name="secondAxis"
+                title="Secondary Axis"
+                array={data2}
+            />
+            <FlexDirection />
+            <PlayGround />
+        </div>
+    </section>
+</MainLayout>
+
+<style lang="scss">
+    @use "../scss/settings/" as *;
+    .section-main {
+        display: grid;
+        grid-template-areas:
+            "ejeMain ejeSecondary"
+            "flexContainer flexContainer"
+            "playground playground";
+        grid-template-columns: auto auto;
+        gap: 2.5rem 1.5rem;
+
+        > :global(*:nth-child(2)) {
+            grid-area: ejeSecondary;
+        }
+        > :global(*:nth-child(3)) {
+            grid-area: flexContainer;
+        }
+        > :global(*:nth-child(4)) {
+            grid-area: playground;
+        }
+
+        @include media-Query(900px) {
+            grid-template-columns: auto 1fr;
+            grid-template-areas:
+                "ejeMain playground"
+                "ejeSecondary playground"
+                "flexContainer playground";
+        }
+    }
+</style>
+
+<script>
+    const $PlayGround = document.getElementById("playGround");
+    const $arrowMainAxis = $PlayGround.querySelector(".main-axis");
+    document.addEventListener("click", (e) => {
+        const $Element = e.target as HTMLElement;
+        if (
+            $Element instanceof HTMLInputElement &&
+            $Element.type === "radio" &&
+            $Element.name === "values"
+        ) {
+            $PlayGround.style.setProperty(
+                "--justify-content",
+                `${$Element.value}`,
+            );
+        }
+        if (
+            $Element instanceof HTMLInputElement &&
+            $Element.type === "radio" &&
+            $Element.name === "flex-direction"
+        ) {
+
+            if($Element.value === "column"){
+                $arrowMainAxis.classList.add("column");
+            }else{
+                $arrowMainAxis.classList.remove("column");
+            }
+            
+            $PlayGround.style.setProperty(
+                "--flex-direction",
+                `${$Element.value}`,
+            );
+        }
+
+        if (
+            $Element instanceof HTMLInputElement &&
+            $Element.type === "radio" &&
+            $Element.name === "secondAxis"
+        ) {
+            $PlayGround.style.setProperty(
+                "--align-items",
+                `${$Element.value}`,
+            );
+        }
+        if (
+            $Element instanceof HTMLInputElement &&
+            $Element.type === "checkbox" &&
+            $Element.name === "showDirection"
+        ){
+            if($Element.checked){
+                console.log($arrowMainAxis);
+                $arrowMainAxis.setAttribute("data-show", 'true');
+            }else{
+                $arrowMainAxis.setAttribute("data-show", 'false');
+            }
+            
+        }
+    });
+</script>

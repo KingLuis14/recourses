@@ -1,0 +1,40 @@
+---
+interface Props {
+    name : string;
+    title: string;
+    array: string[];
+}
+
+const {array, title, name} = Astro.props;
+---
+
+    <fieldset slot="values">
+        <legend>{title}</legend>
+        {
+            array.map((item, index)=>{
+                return <label>
+                            <input {name} type="radio" value={item} 
+                            checked={index === 0} />
+                            {item}
+                        </label>
+            })
+        }
+    </fieldset>
+
+<style lang="scss">
+    @use "../scss/settings/" as *;
+    fieldset {
+        --gaps: 1rem;
+        --columns: 1;
+        
+        display: grid;
+        grid-template-columns: repeat(var(--columns), minmax(max-content,1fr));
+        gap: .8rem 1rem;
+        align-content: start;
+        
+        @include media-Query(tabletSmall) {
+            --columns: 2;
+        }
+        
+    }
+</style>

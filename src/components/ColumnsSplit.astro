@@ -1,0 +1,31 @@
+---
+type direction = 'Order-Bottom-Left' | 'Order-Bottom-Rigth' | 'Order-Top-Left' | 'Order-Top-Rigth'
+
+interface Props {
+    titulo: string;
+    descripcion: string;
+    textoBoton: string;
+    ContentDirection?: direction;
+}
+
+const { titulo, descripcion, textoBoton, ContentDirection } = Astro.props;
+---
+
+
+<article class="Columns-Split even-columns" >
+    <div class={`Columns-Split__Contenido ${ContentDirection}`} >
+        <h2>{titulo}</h2>
+        <p>{descripcion}</p>
+        <slot name="plusContent" />
+        <a href="#">{textoBoton}</a>
+    </div>
+    <slot name="Imagen" />
+</article>
+
+<style lang="scss">
+
+    @use '../scss/layouts/' as *;
+
+
+
+</style>

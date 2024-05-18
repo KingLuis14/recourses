@@ -1,0 +1,57 @@
+<section class="Slider-Banner">
+    <ul class="Slider-Banner__list">
+        <li class="Slider-Banner__item">
+            <img src="https://static.nationalgeographic.es/files/styles/image_3200/public/75552.ngsversion.1422285553360.jpg?w=1900&h=1267" alt="" />
+        </li>
+        <li class="Slider-Banner__item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFF74lS-zQmpG46UlrZp9U2qKfmn2CMTg77uruQt7-4g&s" alt="" />
+        </li>
+        <li class="Slider-Banner__item">
+            <img src="https://estaticos-cdn.prensaiberica.es/clip/4e1211c1-1520-41a7-aabb-42c2e03d1731_alta-libre-aspect-ratio_default_0.jpg" alt="" />
+        </li>
+        <li class="Slider-Banner__item">
+            <img src="https://ca-times.brightspotcdn.com/dims4/default/796e6c9/2147483647/strip/true/crop/1970x1108+39+0/resize/1200x675!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F12%2Fa5%2F79e097ccf62312d18a025f22ce48%2Fhoyla-recuento-11-cosas-aman-gatos-top-001" alt="" />
+        </li>
+    </ul>
+
+</section>
+
+
+<style lang="scss">
+    .Slider-Banner{
+        padding-block: 0;
+        overflow: hidden;
+       
+        &__list{
+            display: flex;
+            height: 100svh;
+            list-style: none;
+            // overflow-y: hidden;
+            transition: transform .2s;
+            
+        }
+
+        &__item{
+            flex-shrink: 0;
+            flex-basis: 100%;
+            height: 100%;
+
+            > img{
+                height: 100%;
+            }
+        }
+    }
+</style>
+
+<script>
+    const $SliderList = document.querySelector(".Slider-Banner__list") as HTMLElement;
+    const $MaxItemsSLider = $SliderList.children.length - 1;
+    let index = 1;
+
+    setInterval(() => {
+        $SliderList.style.transform = `translateX(${index * -100}%)`;
+        index ++;
+        index = index > $MaxItemsSLider ? 0 : index;
+    }, 4000);
+
+</script>

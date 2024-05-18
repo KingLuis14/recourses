@@ -1,0 +1,69 @@
+<fieldset class="flex-container" id="playGround">
+    <legend>Preview</legend>
+    <div class="flex-item | bg-color-box-1 color-neutral-900">1</div>
+    <div class="flex-item | bg-color-box-2">2</div>
+    <div class="flex-item | bg-color-box-3">3</div>
+    <div class="flex-item | bg-color-box-4">4</div>
+    <span class="main-axis" data-show="false"></span>
+    <!-- <span class="cross-axis" data-show="false"></span> -->
+</fieldset>
+
+<style lang="scss" >
+    .flex-container{
+        --justify-content: flex-start;
+        --flex-direction : row;
+        --align-items: stretch;
+
+        position: relative;
+        display: flex;
+        flex-direction: var(--flex-direction);
+        padding-inline: 0;
+        padding-block: 0;
+        justify-content: var(--justify-content);
+        align-items: var(--align-items);
+        min-height: 75svh;
+        height: 80svh;
+
+        > .main-axis{
+            
+            display: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) rotate(-90deg);
+            top: 1rem;
+            bottom: 2rem;
+            border-left: 7px dashed orange;
+
+            &[data-show="true"]{
+                display: block;
+            }
+
+            &.column{
+                transform: rotate(0deg);
+            }
+
+            &::after{
+                content: "";
+                position: absolute;
+                background-color: orange;
+                bottom: 0;
+                width: 25px;
+                aspect-ratio: 1;
+                left: 0;
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                transform: rotate(180deg) translate(62%,-75%);
+
+            }
+
+            
+        }
+        
+        > .flex-item{
+            min-width: min(15vw,90px);
+            min-height: min(15vw,90px);
+            display: grid;
+            place-items: center;
+        }
+
+    }
+</style>

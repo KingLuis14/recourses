@@ -1,0 +1,100 @@
+@use '../settings/' as *;
+
+*,
+*::before,
+*::after {
+
+    box-sizing: border-box;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font: inherit;
+}
+
+body {
+    background-color: $bg-primary;
+    font-family: "Inter", system-ui;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+img,
+video,
+svg {
+    display: block;
+    width: 100%;
+}
+
+img {
+    -o-object-fit: cover;
+    object-fit: cover;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+}
+
+label {
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+}
+
+fieldset {
+    display: block;
+    background-color: $bg-fieldset;
+    padding: 1rem;
+    border-color: #6d6d6d;
+    border-radius: .5rem;
+    position: relative;
+    
+}
+
+input[type='radio'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: .5rem;
+    aspect-ratio: 1;
+    outline: 2px solid $contrast-1;
+    outline-offset: 2px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type='radio']:checked {
+    background-color: $contrast-1;
+}
+
+legend {
+    // background-color: $bg-primary;
+    // padding: 0 .5rem 0 .5rem;
+    position: absolute;
+    left: 0;
+    top: -1.7rem;
+    // display: none;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-latin-variable-full-normal.woff2") format("woff2-variations");
+    font-weight: 100 1000;
+    font-display: swap;
+}

@@ -1,0 +1,66 @@
+@use 'sass:color';
+
+
+$bg-primary: #161731;
+
+
+// contraste
+$contrast-1 : #0afdd1;
+$contrast-2 : #5c23fe;
+$contrast-3 : #e123ff;
+$contrast-4 : #ff3766;
+
+// fieldset
+$bg-fieldset: #ffffff11;
+$bg-input-radio : #3c3e64;
+
+
+
+$colors : (
+    "neutral": (
+        "000" : #fff,
+        "100" : #D1D1D1,
+        "800" : #454545,
+        "900" : #000,
+    ),
+
+    "primary":(
+        "900" : #040420,
+    ),
+
+    "secondary":(
+        "100" : #9188B6,
+        "900" : #231B42,
+    ),
+    "contrast":(
+        "100" : #40d5cf,
+        "900" : #165bd0,
+    )
+);
+
+$colorsPlayground : (
+    "neutral": (
+        "000" : #fff,
+        "100" : #D1D1D1,
+        "800" : #454545,
+        "900" : #000,
+    ),
+
+    "primary":(
+        "000" : #161731,
+    ),
+
+    "box":(
+        "1" : $contrast-1 ,
+        "2" : $contrast-2 ,
+        "3" : $contrast-3 ,
+        "4" : $contrast-4 ,
+    )
+);
+
+
+// tooggle button
+
+$toogle-bg-color : #3c3e64;
+$toogle-circule-color : $contrast-1;
+$toogle-circule-color-disable : darken($toogle-circule-color, 20%);

@@ -1,0 +1,15 @@
+@use "../settings/" as *;
+
+
+
+@each $typeColorKey, $typeColorMap in $colorsPlayground{
+    @each $colorKey, $colorValue in $typeColorMap{
+        .color-#{$typeColorKey}-#{$colorKey}{
+            color: $colorValue;
+        }
+        .bg-color-#{$typeColorKey}-#{$colorKey}{
+            background-color: $colorValue;
+        }
+    }
+}
+

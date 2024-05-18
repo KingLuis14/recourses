@@ -1,0 +1,66 @@
+<fieldset>
+    <legend>Flex Direction</legend>
+    <label>
+        <input name="flex-direction" type="radio" value="row" checked />
+        row
+    </label>
+    <label>
+        <input name="flex-direction" type="radio" value="column" />
+        column
+    </label>
+    <div class="toogle-button">
+        <input type="checkbox" name="showDirection" id="showDirection" />
+        <label for="showDirection"></label>
+        <p>Mostrar dirección</p>
+    </div>
+</fieldset>
+
+<style lang="scss">
+
+    @use "../scss/settings/" as *;
+
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .toogle-button {
+        display: flex;
+        margin-inline-start: -5px;
+        gap: 0.8rem;
+
+        > input {
+            display: none;
+
+            &:checked {
+                + label {
+                    // background-color: green;
+
+                    &::before {
+                        background-color: $toogle-circule-color;
+                        transform: translateX(100%);
+                    }
+                }
+            }
+        }
+
+        > label {
+            background-color: $toogle-bg-color;
+            width: 50px;
+            height: 25px;
+            border-radius: 20px;
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 25px;
+                aspect-ratio: 1;
+                background-color: $toogle-circule-color-disable;
+                border-radius: 50%;
+                transition: transform .2s, background-color .2s;
+            }
+        }
+    }
+</style>
